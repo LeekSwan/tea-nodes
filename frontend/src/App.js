@@ -1,23 +1,49 @@
 import './App.css';
+import axios from 'axios';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      test: ''
+    }
+    // this.handleAdd = this.handleAdd.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/')
+    .then(result => {
+      console.log(result)
+      // const allFoodsFromResponse = result.data.response;
+      // this.setState({ allFoods: allFoodsFromResponse });
+     })
+  }
+
+
+
+
+
+  handleChange(e) {
+    // handles changes that are made to food form
+  }
+
+
+  render() {
+    return (
+        <div>
+            
+
+        </div>
+    )
+      
+  }
 }
+
+  
+
 
 export default App;

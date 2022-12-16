@@ -1,0 +1,27 @@
+-- CREATE TABLE IF NOT EXISTS "tea_nodes" (
+-- 	"id" serial,
+-- 	"tea_name" text,
+-- 	"tea_link" text,
+-- 	"tea_location" text,
+-- 	"tea_description" text,
+-- 	PRIMARY KEY( id )
+-- );
+
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) 
+-- VALUES ('Black Tea', 'aaa', 'China', 'blakc tea');
+
+-- SELECT * FROM tea_nodes
+
+-- -- DROP TABLE edges
+-- CREATE TABLE IF NOT EXISTS "edges" (
+-- 	"id" serial,
+-- 	"from_node" smallint,
+-- 	"to_node" smallint,
+-- 	"label" text,
+-- 	PRIMARY KEY( id )
+-- );
+
+-- INSERT INTO edges(from_node, to_node, label) 
+-- VALUES (1,2,'aaaa');
+
+-- SELECT * FROM edges
