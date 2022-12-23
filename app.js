@@ -1,8 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-// const { Queries } = require('./db_queries')
-const { get_all_tea_nodes } = require('./db_queries')
+const TeaService = require('./service/tea-service')
 
 
 // https://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
@@ -14,12 +13,14 @@ app.all('/', function(req, res, next) {
 
 app.get('/', async function (req, res) {
   console.log("at home!")
-  res.send('Hello World!')
+  res.status(200).send({ response: "Hello World" })
 })
 
-app.get('/getallteanodes', async function (req, res) {
-  console.log('here!')
-  res.send('getallteanodees returns:' + get_all_tea_nodes())
+app.get('/getallteas', async function (req, res) {
+  TeaService.getAllTeas()
+  .then((result) => {
+    res.status(200).send({ response: result })
+  })
 })
 
 
@@ -29,5 +30,3 @@ app.listen(port, () => {
 })
 
 
-
-// TODO: set up routing
