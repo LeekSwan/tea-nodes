@@ -7,8 +7,14 @@ async function getAllTeas () {
     return teas
 }
 
+async function getAllEdges () {
+    const edges = await Queries.get_edges()
+    return edges
+}
+
 
 
 module.exports = {
-    getAllTeas
+    getAllTeas,
+    getAllEdges
 }

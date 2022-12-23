@@ -6,6 +6,12 @@ module.exports = {
         const getAllTeas = {text: 'SELECT * FROM tea_nodes'}
         const result = await connect().query(getAllTeas)
         return result.rows
+    },
+
+    get_edges: async function () {
+        const getAllEdges = {text: 'SELECT * FROM edges'}
+        const result = await connect().query(getAllEdges)
+        return result.rows
     }
 }
 
