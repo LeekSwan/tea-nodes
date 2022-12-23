@@ -7,8 +7,9 @@ async function getAllTeas () {
     return teas
 }
 
+//heavy lifting 'get edges' fxn to to be referenced by app.js
 async function getAllEdges () {
-    const edges = await Queries.get_edges()
+    const edges = await Queries.get_all_edges()
     return edges
 }
 

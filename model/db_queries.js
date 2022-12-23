@@ -8,7 +8,8 @@ module.exports = {
         return result.rows
     },
 
-    get_edges: async function () {
+    //Gets all edges from database
+    get_all_edges: async function () {
         const getAllEdges = {text: 'SELECT * FROM edges'}
         const result = await connect().query(getAllEdges)
         return result.rows

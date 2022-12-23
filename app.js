@@ -23,6 +23,7 @@ app.get('/getallteas', async function (req, res) {
   })
 })
 
+//show edges in frontend url 
 app.get('/getalledges', async function (req, res) {
   TeaService.getAllEdges()
   .then((result) => {
