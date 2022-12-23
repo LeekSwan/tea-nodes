@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 let client = null
 // Returns a Promise for a connected PG Client instance
@@ -11,12 +12,12 @@ async function getClient () {
   }
   try {
     client = new Pool({
-            user: 'rabidrabbit',
-            host: 'db.bit.io',
-            database: 'rabidrabbit/tea-db', // public database 
-            password: 'v2_3x7yt_YRZX48KNswH4Uq8jLADWKee', // key from bit.io database page connect menu
-            port: 5432,
-            ssl: true,
+            user: process.env.PG_USERNAME,
+            host: process.env.PG_HOSTNAME,
+            database: process.env.PG_DATABASE, // public database 
+            password: process.env.PG_PASSWORD, // key from bit.io database page connect menu
+            port: process.env.PG_PORT,
+            ssl: process.env.PG_SSL,
         });
     await client.connect()
     return client
