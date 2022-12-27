@@ -32,6 +32,19 @@ app.get('/getalledges', async function (req, res) {
 })
 
 
+// deletes a specifit tea and edge given its primary key passed fron frontend
+app.delete('/:teaId', async function (req, res) {
+  TeaService.deleteTea(req.params.teaId)
+  // .then((result) => {
+  //   if (result == ) {
+
+  //   }
+  // })
+
+})
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)
