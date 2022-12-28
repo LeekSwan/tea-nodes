@@ -1,4 +1,3 @@
-const { check_tea_exists } = require('../model/db_queries')
 const Queries = require('../model/db_queries')
 
 async function getAllTeas () {
@@ -16,7 +15,7 @@ async function deleteTea (teaId) {
     if (teaId == 1) { // If teaId is root tea, throw error
         throw new Error('cannotDeleteRootTea')
     }
-    const teaExists = await check_tea_exists(teaId)
+    const teaExists = await Queries.check_tea_exists(teaId)
     if (!teaExists) {
         throw new Error('teaNotFound')
     }
@@ -33,6 +32,7 @@ async function deleteTea (teaId) {
 
 module.exports = {
     getAllTeas,
+    getAllEdges,
     getAllEdges,
     deleteTea
 }
