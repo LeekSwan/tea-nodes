@@ -13,17 +13,22 @@ async function getAllEdges () {
 }
 
 async function deleteTea (teaId) {
-    console.log('dbg 1: ' + teaId)
-    const teaExists = await check_tea_exists(teaId)
-    console.log('dbg 2: ' + teaExists)
-    if (teaExists == true) {
-        const tea_delete = await Queries.delete_tea(tea_Id)
-        return tea_delete
-    } else {
-        return false
+    if (teaId == 1) { // If teaId is root tea, throw error
+        throw new Error('cannotDeleteRootTea')
     }
-}
+    const teaExists = await check_tea_exists(teaId)
+    if (!teaExists) {
+        throw new Error('teaNotFound')
+    }
+    const tea_delete = await Queries.delete_tea(teaId)
+    if (!tea_delete) {
+        throw new Error('deleteTeaError')
+    }
+    return tea_delete
 
+    // TODO: figure out logic for deleting edges
+
+}
 
 
 module.exports = {
