@@ -44,6 +44,27 @@ app.post('/:getallteas', async function (req, res) {
 })
 
 
+// deletes a specifit tea and edge given its primary key passed fron frontend
+app.delete('/:teaId', async function (req, res) {
+  TeaService.deleteTea(req.params.teaId)
+  .then(() => {
+    res.status(200).send()
+  })
+  .catch(err => {
+    if (err.message === 'teaNotFound') {
+      return res.status(404).send('Tea not found')
+    }
+    if (err.message === 'cannotDeleteRootTea') {
+      return res.status(405).send('Cannot delete root tea')
+    }
+    console.log(err)
+    return res.status(500).json(err)
+  })
+
+})
+
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port http://localhost:${port}`)

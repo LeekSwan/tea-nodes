@@ -13,14 +13,35 @@ async function getAllEdges () {
     return edges
 }
 
+
 async function addTea (newtea) {
     //pass values through query
     const new_tea = await Queries.add_tea(newtea['tea_name'],newtea['tea_link'],newtea['tea_location'],newtea['tea_description'],)
     return new_tea
 }
 
+async function deleteTea (teaId) {
+    if (teaId == 1) { // If teaId is root tea, throw error
+        throw new Error('cannotDeleteRootTea')
+    }
+    const teaExists = await Queries.check_tea_exists(teaId)
+    if (!teaExists) {
+        throw new Error('teaNotFound')
+    }
+    const tea_delete = await Queries.delete_tea(teaId)
+    if (!tea_delete) {
+        throw new Error('deleteTeaError')
+    }
+    return tea_delete
+
+    // TODO: figure out logic for deleting edges
+
+}
+
+
 module.exports = {
     getAllTeas,
     getAllEdges,
+    deleteTea,
     addTea
 }
