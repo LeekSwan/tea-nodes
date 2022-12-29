@@ -1,5 +1,8 @@
 const  db = require('./db_connect')
 
+
+
+
 module.exports = {
     get_all_tea_nodes: async function () {
         const getAllTeas = {text: 'SELECT * FROM tea_nodes'}
@@ -12,5 +15,18 @@ module.exports = {
         const getAllEdges = {text: 'SELECT * FROM edges'}
         const result = await db.query(getAllEdges)
         return result.rows
+    },
+
+    //add tea to database
+    add_tea: async function(tea_name, tea_link, tea_location, tea_description) {
+        console.log("add_tea ran")
+        const addTea = {text:  'INSERT INTO tea_nodes (tea_name, tea_link, tea_location, tea_description) VALUES($1, $2, $3, $4)',
+                               values :[tea_name, tea_link, tea_location, tea_description]}
+        console.log("this line ran")                      
+        // const result = await db.query(addTea, function (err, res) {})
+        const result = await db.query(addTea)
+        return result
     }
 }
+
+

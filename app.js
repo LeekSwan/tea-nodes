@@ -3,6 +3,9 @@ const app = express()
 const port = 3000
 const TeaService = require('./service/tea-service')
 
+//pass json body through postman or pass url through json
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }))
 
 // https://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
 app.all('/', function(req, res, next) {
@@ -29,6 +32,15 @@ app.get('/getalledges', async function (req, res) {
   .then((result) => {
     res.status(200).send({ response: result })
   })
+})
+
+app.post('/:getallteas', async function (req, res) {
+  console.log(req.body)
+  // pass json into funtion 
+  TeaService.addTea(req.body)
+  // .then((result) => {
+  //   res.status(200).send({ response: result })
+  // })
 })
 
 
