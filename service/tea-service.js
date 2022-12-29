@@ -11,7 +11,28 @@ async function getAllEdges () {
     return edges
 }
 
+async function deleteTea (teaId) {
+    if (teaId == 1) { // If teaId is root tea, throw error
+        throw new Error('cannotDeleteRootTea')
+    }
+    const teaExists = await Queries.check_tea_exists(teaId)
+    if (!teaExists) {
+        throw new Error('teaNotFound')
+    }
+    const tea_delete = await Queries.delete_tea(teaId)
+    if (!tea_delete) {
+        throw new Error('deleteTeaError')
+    }
+    return tea_delete
+
+    // TODO: figure out logic for deleting edges
+
+}
+
+
 module.exports = {
     getAllTeas,
-    getAllEdges
+    getAllEdges,
+    getAllEdges,
+    deleteTea
 }

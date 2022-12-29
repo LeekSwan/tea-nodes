@@ -1,3 +1,5 @@
+######### Table set up for tea nodes #########
+-- DROP TABLE tea_nodes;
 -- CREATE TABLE IF NOT EXISTS "tea_nodes" (
 -- 	"id" serial,
 -- 	"tea_name" text,
@@ -7,12 +9,25 @@
 -- 	PRIMARY KEY( id )
 -- );
 
--- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) 
--- VALUES ('Black Tea', 'aaa', 'China', 'blakc tea');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Tea', '', '', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Black Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Green Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Oolong Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('White Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Dark Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Yellow Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Jasmine Tea', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Matcha', 'aaa', 'China', 'test');
+-- INSERT INTO tea_nodes(tea_name, tea_link, tea_location, tea_description) VALUES ('Jasmine Pearl Tea', 'aaa', 'China', 'test');
 
--- SELECT * FROM tea_nodes
 
--- -- DROP TABLE edges
+
+
+######### Table set up for tea edges #########
+-- DELETE FROM tea_nodes WHERE id = 8;
+-- SELECT * FROM tea_nodes;
+
+-- DROP TABLE edges;
 -- CREATE TABLE IF NOT EXISTS "edges" (
 -- 	"id" serial,
 -- 	"from_node" smallint,
@@ -21,7 +36,13 @@
 -- 	PRIMARY KEY( id )
 -- );
 
--- INSERT INTO edges(from_node, to_node, label) 
--- VALUES (1,2,'aaaa');
 
--- SELECT * FROM edges
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,2,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,3,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,4,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,5,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,6,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (1,7,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (3,8,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (3,9,'aaaa');
+-- INSERT INTO edges(from_node, to_node, label) VALUES (8,10,'aaaa');
