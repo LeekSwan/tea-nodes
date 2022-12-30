@@ -35,12 +35,21 @@ app.get('/getalledges', async function (req, res) {
 })
 
 app.post('/:getallteas', async function (req, res) {
-  console.log(req.body)
   // pass json into funtion 
   TeaService.addTea(req.body)
-  // .then((result) => {
-  //   res.status(200).send({ response: result })
-  // })
+  //add conditional statement with errors
+  //change status http code to appropriate error
+  .then((result) => {
+    res.status(201).send({ response: result })
+  })
+  .catch(err => {
+    if(err.message === 'MissingValue(s)') {
+      return res.status(400).send('Missing one or more values')
+    }
+    if(err.message === 'TeaAlreadyExists') {
+      return res.status(409).send('Tea already in table')
+    }
+  })
 })
 
 
