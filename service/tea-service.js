@@ -33,8 +33,11 @@ async function addTea (newtea) {
     
 }
 
+
 module.exports = {
     getAllTeas,
     getAllEdges,
-    addTea
+    getAllEdges,
+    addTea,
+
 }

@@ -1,8 +1,6 @@
 const  db = require('./db_connect')
 
 
-
-
 module.exports = {
     get_all_tea_nodes: async function () {
         const getAllTeas = {text: 'SELECT * FROM tea_nodes'}
@@ -16,6 +14,7 @@ module.exports = {
         const result = await db.query(getAllEdges)
         return result.rows
     },
+
 
 
     do_tea_be_there: async function(teaname) {
@@ -34,5 +33,9 @@ module.exports = {
             return result
     }
 }
+
+
+
+
 
 
