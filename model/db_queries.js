@@ -26,7 +26,6 @@ module.exports = {
 
     //add tea to database
     add_tea: async function(tea_name, tea_link, tea_location, tea_description) {
-
         const addTea = {text:  'INSERT INTO tea_nodes (tea_name, tea_link, tea_location, tea_description) VALUES($1, $2, $3, $4)',
                                values :[tea_name, tea_link, tea_location, tea_description]}
             const result = await db.query(addTea)
@@ -44,7 +43,6 @@ module.exports = {
         const deleteTea = {text: 'DELETE FROM tea_nodes WHERE id = $1', values: [teaId]}
         // const deleteEdges = {text: 'DELETE FROM edges WHERE from_node = $1 or to_node = $1', values: [teaId]}
         // const edges_result = await db.query(deleteEdges)
-
         try {
             await db.query(deleteTea)
             return true

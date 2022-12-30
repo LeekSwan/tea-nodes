@@ -1,4 +1,3 @@
-const { appendFile } = require('fs')
 const Queries = require('../model/db_queries')
 
 
@@ -17,15 +16,11 @@ async function getAllEdges () {
 async function addTea (newtea) {
     //pass values through query
     //throw error should stop
-    console.log("before dobethere")
     const doBeThere = await Queries.do_tea_be_there(newtea['tea_name'])
-    console.log("after const dobethere")
-    console.log(doBeThere)
     if (doBeThere) {
         console.log("inside dobethere")
         throw new Error('TeaAlreadyExists')
     }
-
     if (newtea['tea_name']== "" || newtea['tea_link'] == "" || newtea['tea_location'] == "" || newtea['tea_description']== "") {
         throw new Error('MissingValue(s)')  
     }
