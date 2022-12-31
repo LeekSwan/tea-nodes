@@ -8,11 +8,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 
 // https://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
-app.all('/', function(req, res, next) {
+app.all('/*', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
- });
+});
 
 app.get('/', async function (req, res) {
   console.log("at home!")
@@ -23,6 +23,8 @@ app.get('/getallteas', async function (req, res) {
   TeaService.getAllTeas()
   .then((result) => {
     res.status(200).send({ response: result })
+  }).catch(err => {
+    console.log(err)
   })
 })
 
@@ -31,6 +33,8 @@ app.get('/getalledges', async function (req, res) {
   TeaService.getAllEdges()
   .then((result) => {
     res.status(200).send({ response: result })
+  }).catch(err => {
+    console.log(err)
   })
 })
 
