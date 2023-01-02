@@ -17,8 +17,9 @@ class App extends React.Component {
     // this.handleChange = this.handleChange.bind(this)
   }
 
+  // Calls this function when first loading page
   componentDidMount() {
-    axios.get('http://localhost:3000/getallteas')
+    axios.get('http://localhost:3000/getallteas') // calls api to get all teas
       .then(result => {
         result.data.response.forEach(val=> {
           this.state.nodes.add({
@@ -27,7 +28,7 @@ class App extends React.Component {
           })
         })
       })
-    axios.get('http://localhost:3000/getalledges')
+    axios.get('http://localhost:3000/getalledges') // calls api to get all edges
       .then(result => {
         console.log(result.data.response)
         result.data.response.forEach(val=> {
@@ -45,6 +46,11 @@ class App extends React.Component {
     const options = {};
 
     this.network = new Network(this.appRef.current, data, options);
+
+    // tells react what to do when clicking on a code
+    this.network.on("click", function (params) {
+      console.log(params)
+    });
   }
 
   render() { 
