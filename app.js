@@ -2,10 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 const TeaService = require('./service/tea-service')
+const session = require("express-session");
 
 //pass json body through postman or pass url through json
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
+app.use(session({secret: 'keyboard cat', resave: true, rolling: true, saveUninitialized: false, cookie: {expires: 5 * 60000}}))
+
 
 // https://stackoverflow.com/questions/11181546/how-to-enable-cross-origin-resource-sharing-cors-in-the-express-js-framework-o
 app.all('/*', function(req, res, next) {
