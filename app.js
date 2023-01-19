@@ -41,7 +41,7 @@ app.get('/getalledges', async function (req, res) {
   })
 })
 
-app.post('/:getallteas', async function (req, res) {
+app.post('/:addtea', async function (req, res) {
   // pass json into funtion 
   TeaService.addTea(req.body)
   //add conditional statement with errors
