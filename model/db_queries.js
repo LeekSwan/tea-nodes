@@ -26,10 +26,10 @@ module.exports = {
 
     //add tea to database
     add_tea: async function(tea_name, tea_link, tea_location, tea_description) {
-        const addTea = {text:  'INSERT INTO tea_nodes (tea_name, tea_link, tea_location, tea_description) VALUES($1, $2, $3, $4)',
+        const addTea = {text:  'INSERT INTO tea_nodes (tea_name, tea_link, tea_location, tea_description) VALUES($1, $2, $3, $4) RETURNING id',
                                values :[tea_name, tea_link, tea_location, tea_description]}
-            const result = await db.query(addTea)
-            return result
+        const result = await db.query(addTea)
+        return result['rows'][0]['id']
     },
 
     // query to check if a tea exists by its id. Returns true if exists, false otherwise
