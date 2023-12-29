@@ -1,8 +1,40 @@
-import { createClient } from '@supabase/supabase-js'
+const {createClient} =  "@supabase/supabase-js"
+const { Pool } = require('pg');
 
-const supabaseUrl = 'https://uxdewfguxmwbfkgnegst.supabase.co'
-const supabaseKey = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InV4ZGV3Zmd1eG13YmZrZ25lZ3N0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTgyODcwMjAsImV4cCI6MjAxMzg2MzAyMH0.skrAOMNaugPzuwFjSaagfwGSFOR1b6flX1m7UQIBr7k
+// const supabaseUrl = env.SB_URL
+// const supabaseKey = 
+// const supabase = createClient(supabaseUrl, supabaseKey)
+// console.log(supabase)
+// module.exports = {supabase}
 
-const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default supabase
+let client = null
+async function getClient () {
+  if (client) {
+    return client
+  }
+  try {
+    client = new Pool({
+      supabaseUrl: env.PG_URL,
+      supabaseKey: process.env.PG_KEY,
+      supabase:  createClient(supabaseUrl, supabaseKey)
+
+        });
+    await client.connect()
+    return client
+  } catch (err) {
+    console.log('Error when connecting to PG:')
+    console.log(err.message)
+    return null
+  }
+}
+
+async function query (text) {
+    const client = await getClient()
+    return client.query(text)
+  }
+
+
+getClient()
+
+module.exports = { query }
