@@ -2,12 +2,10 @@ const  sql = require('./db_supabase_connect.js');
 
 
 async function get_all_tea_nodes() {
-  const result = await sql.dbquery('SELECT * FROM tea_nodes')
-  console.log(result)
+  const result = await sql`SELECT * FROM tea_nodes`
   return result
 }
 
-get_all_tea_nodes()
 
 async function get_all_edges() {
   const getAllEdges = await sql`SELECT * FROM edges`
@@ -57,7 +55,7 @@ async function do_tea_be_there(teaname) {
 
 
 
-  module.exports = get_all_tea_nodes;
+  module.exports = {get_all_tea_nodes, delete_tea, add_tea, get_all_edges, do_tea_be_there}
 
 
   // get_all_edges: async function () {
