@@ -1,19 +1,32 @@
 //import postgres from 'postgres'
 const postgres = require('postgres')
+//import dotenv from dotenv and add .config()
 const dotenv = require('dotenv').config()
 
-const connectionString = process.env.DATABASE_URL
+//supabase connection documentation using postgress
+// const connectionString = process.env.DATABASE_URL
+const connectionString = 'postgresql://postgres:dF0l9VswSfXVTJWa@db.uxdewfguxmwbfkgnegst.supabase.co:5432/postgres'
 const sql = postgres(connectionString)
 
-// async function allTeas() {
-//   const result = await sql`SELECT * FROM tea_nodes`
+
+async function dbquery (info){
+  console.log(info)
+  const client = await sql`${info}`
+  console.log(client)
+  return client
+}
+
+dbquery('SELECT * FROM tea_nodes')
+
+// async function get_all_tea_nodes() {
+//   const result = await dbquery('SELECT * FROM tea_nodes')
 //   console.log(result)
 //   return result
 // }
 
-// allTeas()
+// get_all_tea_nodes()
 
-module.exports = sql;
+module.exports = {dbquery};
 
 
 
