@@ -12,7 +12,7 @@ async function getAllTeas () {
 async function getAllEdges () {
     const edges = await Queries.get_all_edges()
     return edges
-}
+} 
 
 
 async function addTea (newtea) {
