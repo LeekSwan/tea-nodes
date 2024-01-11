@@ -1,8 +1,10 @@
-const Queries = require('../model/db_queries')
+// const Queries = require('../model/db_queries')
+const Queries = require('../model_2/db_supabase_queries')
 
 
 async function getAllTeas () {
     const teas = await Queries.get_all_tea_nodes()
+    console.log(teas)
     return teas
 }
 
@@ -10,7 +12,7 @@ async function getAllTeas () {
 async function getAllEdges () {
     const edges = await Queries.get_all_edges()
     return edges
-}
+} 
 
 
 async function addTea (newtea) {
